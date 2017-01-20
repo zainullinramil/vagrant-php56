@@ -44,7 +44,7 @@ vagrantfile:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
         synced_folder:
             vflsf_kvk9tqftk21u:
-                source: ./
+                source: ./htdocs
                 target: /var/www/html
                 sync_type: default
                 smb:
@@ -260,9 +260,18 @@ php:
         pecl: {  }
     ini:
         display_errors: 'On'
-        error_reporting: '-1'
         session.save_path: /var/lib/php/session
-        date.timezone: UTC
+        error_reporting: '1'
+        allow_url_fopen: '1'
+        allow_url_include: '1'
+        html_errors: '1'
+        memory_limit: 256M
+        max_execution_time: '3000'
+        max_file_uploads: '999'
+        max_input_time: '999'
+        upload_max_filesize: 1024M
+        post_max_size: 1024M
+        date.timezone: Europe/Berlin
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
@@ -431,4 +440,3 @@ solr:
     settings:
         version: 5.5.2
         port: '8984'
-

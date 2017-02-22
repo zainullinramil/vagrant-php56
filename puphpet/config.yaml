@@ -20,10 +20,10 @@ vagrantfile:
                         update_guest_tools: 0
                 machines:
                     vflm_x5dp5nfkt864:
-                        id: cakebakePHP56
-                        hostname: php56.cakebake.dev
+                        id: hscript
+                        hostname: hscript.dev
                         network:
-                            private_network: 192.168.33.99
+                            private_network: 192.168.56.102
                             forwarded_port:
                                 vflmnfp_g3a9kbgwhwp0:
                                     host: '5844'
@@ -107,12 +107,11 @@ users_groups:
 locale:
     install: '1'
     settings:
-        default_locale: de_DE.UTF-8
+        default_locale: en_US.UTF-8
         locales:
             - en_GB.UTF-8
             - en_US.UTF-8
-            - de_DE.UTF-8
-        timezone: Europe/Berlin
+        timezone: Europe/Moscow
 firewall:
     install: '1'
     rules: {  }
@@ -197,9 +196,9 @@ apache:
         - rewrite
     vhosts:
         av_820cco41fnls:
-            servername: php56.cakebake.dev
+            servername: hscript.dev
             serveraliases:
-                - www.php56.cakebake.dev
+                - www.hscript.dev
             docroot: /var/www/html
             port: '80'
             setenv:
@@ -271,7 +270,7 @@ php:
         max_input_time: '999'
         upload_max_filesize: 1024M
         post_max_size: 1024M
-        date.timezone: Europe/Berlin
+        date.timezone: Europe/Moscow
     fpm_ini:
         error_log: /var/log/php-fpm.log
     fpm_pools:
@@ -346,12 +345,23 @@ mariadb:
     install: '1'
     settings:
         version: '10.1'
-        root_password: root
+        root_password: 'root'
         override_options: {  }
     adminer: 0
-    users: {  }
-    databases: {  }
-    grants: {  }
+    users:
+        mysqlnu_l1ypawhvf7cr:
+            name: dbuser
+            password: '123'
+    databases:
+        mysqlnd_gv8qnurp4ya1:
+            name: dbname
+            sql: ''
+    grants:
+        mysqlng_xb1usglx0667:
+            user: dbuser
+            table: '*.*'
+            privileges:
+                - ALL
 mysql:
     install: '0'
     settings:
